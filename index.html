@@ -50,8 +50,20 @@
       window.baseUrl = window.location.pathname.includes('forest-sound-app') 
         ? '/forest-sound-app/' 
         : '/';
+      
+      // 添加音频文件路径修复功能
+      window.getAudioPath = function(filename) {
+        const base = window.baseUrl || '/';
+        return `${base}assets/assets/sounds/${filename}`;
+      };
+      
+      // 监听错误，提供更详细的日志
+      window.addEventListener('error', function(e) {
+        console.error('全局错误：', e.message, e.filename, e.lineno);
+      });
     </script>
     <script src="publicpath.js"></script>
     <script src="_expo/static/js/web/entry-d4fce8fafc9c1607599c983a26712c27.js" defer></script>
+    <script src="assetspatch.js" defer></script>
   </body>
 </html>
