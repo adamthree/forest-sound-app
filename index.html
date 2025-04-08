@@ -6,17 +6,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <title>森声App</title>
     <script type="text/javascript">
-      // GitHub Pages的SPA重定向支持
-      (function(l) {
-        if (l.search[1] === '/' ) {
-          var decoded = l.search.slice(1).split('&').map(function(s) { 
-            return s.replace(/~and~/g, '&')
-          }).join('?');
-          window.history.replaceState(null, null,
-              l.pathname.slice(0, -1) + decoded + l.hash
-          );
+      // GitHub Pages的SPA重定向支持 - 处理来自404页面的重定向
+      (function() {
+        // 检查URL中是否有路径参数
+        var urlParams = new URLSearchParams(window.location.search);
+        var pathParam = urlParams.get('p');
+        
+        if (pathParam) {
+          // 从路径参数恢复路由路径
+          var path = pathParam || '/';
+          // 清除URL参数但保留路径
+          window.history.replaceState(null, null, path);
         }
-      }(window.location))
+      })();
     </script>
     <!-- The `react-native-web` recommended style reset: https://necolas.github.io/react-native-web/docs/setup/#root-element -->
     <style id="expo-reset">
@@ -62,8 +64,9 @@
         console.error('全局错误：', e.message, e.filename, e.lineno);
       });
     </script>
+    <!-- 先加载补丁脚本，确保在主应用脚本之前执行 -->
     <script src="publicpath.js"></script>
+    <script src="assetspatch.js"></script>
     <script src="_expo/static/js/web/entry-d4fce8fafc9c1607599c983a26712c27.js" defer></script>
-    <script src="assetspatch.js" defer></script>
   </body>
 </html>

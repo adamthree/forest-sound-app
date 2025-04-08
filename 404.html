@@ -5,17 +5,26 @@
     <title>森声App</title>
     <script type="text/javascript">
       // 处理GitHub Pages的SPA路由
-      var pathSegmentsToKeep = 1;
+      var segmentCount = 1; // 使用子路径托管时为1，根路径为0
       var l = window.location;
-      l.replace(
-        l.protocol + '//' + l.hostname + (l.port ? ':' + l.port : '') +
-        l.pathname.split('/').slice(0, 1 + pathSegmentsToKeep).join('/') + '/?/' +
-        l.pathname.slice(1).split('/').slice(pathSegmentsToKeep).join('/').replace(/&/g, '~and~') +
-        (l.search ? '&' + l.search.slice(1).replace(/&/g, '~and~') : '') +
-        l.hash
-      );
+      var repo = '/forest-sound-app'; // 仓库名称
+      
+      // 构建重定向URL
+      var redirectUrl = l.protocol + '//' + l.hostname + (l.port ? ':' + l.port : '') + 
+          repo + '/?p=' + l.pathname.slice(repo.length);
+      
+      console.log('重定向到:', redirectUrl);
+      
+      // 执行重定向
+      window.location.replace(redirectUrl);
     </script>
   </head>
   <body>
+    <h1>页面正在重定向...</h1>
+    <p>如果页面没有自动跳转，请<a id="redirect-link" href="/">点击这里</a>手动跳转。</p>
+    <script>
+      // 更新手动跳转链接
+      document.getElementById('redirect-link').href = redirectUrl;
+    </script>
   </body>
 </html> 
