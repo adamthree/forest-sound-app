@@ -20,7 +20,7 @@
 
 1. 克隆仓库
 ```bash
-git clone https://github.com/YOUR_GITHUB_USERNAME/forest-sound-app.git
+git clone https://github.com/adamthree/forest-sound-app.git
 cd forest-sound-app
 ```
 
@@ -46,7 +46,7 @@ npm run deploy
 
 ## 在线体验
 
-访问 [https://YOUR_GITHUB_USERNAME.github.io/forest-sound-app](https://YOUR_GITHUB_USERNAME.github.io/forest-sound-app) 体验应用。
+访问 [https://adamthree.github.io/forest-sound-app](https://adamthree.github.io/forest-sound-app) 体验应用。
 
 ## 许可证
 
